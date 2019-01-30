@@ -152,6 +152,8 @@ noremap <leader>gd :Git d<space>
 noremap <leader>gC :Gcommit<CR>
 noremap <leader>gp :Gpush<space>
 
+let g:ctrlp_map = '<F12>'
+nmap <C-p> :FZF<CR>
 nnoremap <C-\> :NERDTreeToggle<CR>
 nnoremap <C-b> :CtrlPBuffer<CR>
 nnoremap <F3> :Rg<Space>
@@ -164,3 +166,5 @@ vnoremap <F5> :sort<CR>
 " help
 packloadall
 silent! helptags ALL
+
+let g:fzf_nvim_statusline = 1
