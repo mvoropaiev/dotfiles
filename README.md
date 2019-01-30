@@ -13,9 +13,9 @@
 
 * Remove plugin
 
-  * `git submodule deinit ./.vim/pack/bundle/start/vim-airline`
-  * `git rm .vim/pack/bundle/start/vim-airline`
-  * `rm -rf .git/modules/vim/pack/bundle/start/vim-airline`
+  * `git submodule deinit -f -- ./.vim/pack/bundle/start/vim-airline`
+  * `rm -rf ./.git/modules/.vim/pack/bundle/start/vim-airline`
+  * `git rm -f ./.vim/pack/bundle/start/vim-airline`
   * `git commit`
 
 * Plugins
