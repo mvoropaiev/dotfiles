@@ -47,6 +47,7 @@ set expandtab
 set updatetime=100
 
 " airline
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='tomorrow'
 let g:airline#extensions#default#section_truncate_width = {}
@@ -140,8 +141,8 @@ let mapleader = ","
 
 nmap <leader>n :enew<CR>
 nmap <leader>q :bd<CR>
-nmap <Leader>, <Esc>:bnext<CR>
-nmap <Leader>. <Esc>:bprevious<CR>
+nmap <Leader>. <Esc>:bnext<CR>
+nmap <Leader>, <Esc>:bprevious<CR>
 
 noremap <leader>h :set hlsearch! hlsearch?<CR>
 
@@ -151,11 +152,12 @@ noremap <leader>gm :Gmerge --no-ff<space>
 noremap <leader>gd :Git d<space>
 noremap <leader>gC :Gcommit<CR>
 noremap <leader>gp :Gpush<space>
+nnoremap « :NERDTreeFind<CR>
 
 let g:ctrlp_map = '<F12>'
 nmap <C-p> :FZF<CR>
 nnoremap <C-\> :NERDTreeToggle<CR>
-nnoremap <C-b> :CtrlPBuffer<CR>
+nnoremap <C-b> :Buffers<CR>
 nnoremap <F3> :Rg<Space>
 nnoremap <F2> :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <F2> :ALEGoToDefinition<CR>
