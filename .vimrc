@@ -5,6 +5,8 @@ set re=1
 set mouse=a
 set hidden
 
+set directory^=$HOME/.vim/tmp//
+
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -133,20 +135,25 @@ endif
 "let g:netrw_nobeval = 1
 
 " ruby
-let g:ale_fixers = {'ruby': ['rubocop'], 'sh': ['shfmt'], 'terraform': ['terraform']}
+let g:ale_fixers = {'ruby': ['rubocop'], 'sh': ['shfmt'], 'terraform': ['terraform'], 'python': ['isort', 'yapf']}
 
 
 " key bindings
 let mapleader = ","
+
+noremap <Leader>w :update<CR>
 
 nmap <leader>n :enew<CR>
 nmap <leader>q :bd<CR>
 nmap <Leader>. <Esc>:bnext<CR>
 nmap <Leader>, <Esc>:bprevious<CR>
 
-noremap <leader>h :set hlsearch! hlsearch?<CR>
+set hlsearch
+noremap <leader>h :let @/ = ""<CR>
+"noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " git
+noremap <leader>gs :G<CR>
 noremap <leader>gc :Git checkout<space>
 noremap <leader>gm :Gmerge --no-ff<space>
 noremap <leader>gd :Git d<space>
@@ -161,7 +168,7 @@ nnoremap <C-b> :Buffers<CR>
 nnoremap <F3> :Rg<Space>
 nnoremap <F2> :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <F2> :ALEGoToDefinition<CR>
-nnoremap <F6> :ALEFix<CR>
+nnoremap <leader>f :ALEFix<CR>
 nnoremap <F7> :!screen -S d4m -p 0 -X stuff "touch \"/var/lib/docker/volumes/ftrails_app_nfs/_data/@%\""<CR><CR>
 
 vnoremap <F5> :sort<CR>

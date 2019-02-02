@@ -120,10 +120,11 @@ if [ -f ~/.zsh_aliases.zsh ]; then
 fi
 
 # path
-export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.5.0/bin:/Users/mvoropaiev/Library/Python/3.7/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin::$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export PATH="/Users/mvoropaiev/Library/Python/3.7/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH="/usr/local/opt/ansible@1.9/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # powerline
 # pip3 install powerline-status
