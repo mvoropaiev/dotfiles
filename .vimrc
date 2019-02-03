@@ -76,6 +76,9 @@ let g:LanguageClient_serverCommands = {
         \ 'ruby': ['bundle', 'exec', 'solargraph', 'stdio'],
         \ 'python': ['pyls']
         \ }
+
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
 " history
 " set undofile
 " iset undodir=~/.vim/undo/
