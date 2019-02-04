@@ -122,7 +122,8 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 "endif
 if executable('rg')
   set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --hidden --glob ""'
+  let g:ctrlp_user_command = 'rg --hidden --files %s'
+  "let g:ctrlp_user_command = 'rg %s --files --color=never --hidden --glob ""'
   "let g:ctrlp_use_caching = 0
 endif
 
