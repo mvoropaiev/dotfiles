@@ -19,6 +19,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_include_object = 1
 autocmd FileType ruby,eruby let g:rubycomplete_include_objectspace = 1
 
+let g:rainbow_active = 1
+
 " deoplete
 let g:deoplete#enable_at_startup = 1
 set runtimepath+=~/.vim/pack/bundle/start/deoplete.nvim/
@@ -31,7 +33,8 @@ call deoplete#custom#option({
 set completeopt=longest,menuone
 "set completeopt=preview
 "set completeopt=menu,menuone,preview,noselect,noinsert
-
+let g:neosnippet#scope_aliases = {}
+let g:neosnippet#scope_aliases['ruby'] = 'ruby,rails'
 " lenght marker
 set colorcolumn=80
 " TODO: fix?
@@ -122,7 +125,7 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 "endif
 if executable('rg')
   set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg --hidden --files %s'
+  let g:ctrlp_user_command = 'rg --files --no-ignore-vcs --hidden %s'
   "let g:ctrlp_user_command = 'rg %s --files --color=never --hidden --glob ""'
   "let g:ctrlp_use_caching = 0
 endif
@@ -140,7 +143,6 @@ endif
 
 " ruby
 let g:ale_fixers = {'ruby': ['rubocop'], 'sh': ['shfmt'], 'terraform': ['terraform'], 'python': ['isort', 'yapf']}
-
 
 " key bindings
 let mapleader = ","
@@ -162,7 +164,7 @@ noremap <leader>gc :Git checkout<space>
 noremap <leader>gm :Gmerge --no-ff<space>
 noremap <leader>gd :Git d<space>
 noremap <leader>gC :Gcommit<CR>
-noremap <leader>gp :Gpush<space>
+noremap <expr> <leader>gp ":Gpush -u origin " . fugitive#head()
 nnoremap « :NERDTreeFind<CR>
 
 let g:ctrlp_map = '<F12>'
@@ -173,6 +175,7 @@ nnoremap <F3> :Rg<Space>
 nnoremap <F2> :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <F2> :ALEGoToDefinition<CR>
 nnoremap <leader>f :ALEFix<CR>
+" autocmd FileType eruby nnoremap <leader>f :!htmlbeautifier "%" "%"<CR>
 nnoremap <F7> :!screen -S d4m -p 0 -X stuff "touch \"/var/lib/docker/volumes/ftrails_app_nfs/_data/@%\""<CR><CR>
 
 vnoremap <F5> :sort<CR>

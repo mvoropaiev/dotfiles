@@ -68,3 +68,6 @@
 [submodule ".vim/pack/bundle/start/vim-commentary"]
 	path = .vim/pack/bundle/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule ".vim/pack/bundle/start/rainbow"]
+	path = .vim/pack/bundle/start/rainbow
+	url = https://github.com/luochen1990/rainbow
