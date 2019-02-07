@@ -5,6 +5,7 @@ set re=1
 set mouse=a
 set hidden
 
+let g:neosnippet#snippets_directory='~/.vim/pack/bundle/start/vim-snippets/snippets'
 set directory^=$HOME/.vim/tmp//
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -152,7 +153,8 @@ noremap <Leader>w :update<CR>
 nmap <leader>n :enew<CR>
 nmap <leader>q :bd<CR>
 nmap <Leader>. <Esc>:bnext<CR>
-nmap <Leader>, <Esc>:bprevious<CR>
+nmap <Leader>, <Esc>:b#<CR>
+nmap <Leader>m <Esc>:bprevious<CR>
 
 set hlsearch
 noremap <leader>h :let @/ = ""<CR>
@@ -184,3 +186,29 @@ packloadall
 silent! helptags ALL
 
 let g:fzf_nvim_statusline = 1
+" Save current view settings on a per-window, per-buffer basis.
+function! AutoSaveWinView()
+    if !exists("w:SavedBufView")
+        let w:SavedBufView = {}
+    endif
+    let w:SavedBufView[bufnr("%")] = winsaveview()
+endfunction
+
+" Restore current view settings.
+function! AutoRestoreWinView()
+    let buf = bufnr("%")
+    if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
+        let v = winsaveview()
+        let atStartOfFile = v.lnum == 1 && v.col == 0
+        if atStartOfFile && !&diff
+            call winrestview(w:SavedBufView[buf])
+        endif
+        unlet w:SavedBufView[buf]
+    endif
+endfunction
+
+" When switching buffers, preserve window view.
+if v:version >= 700
+    autocmd BufLeave * call AutoSaveWinView()
+    autocmd BufEnter * call AutoRestoreWinView()
+endif

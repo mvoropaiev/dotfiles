@@ -71,3 +71,6 @@
 [submodule ".vim/pack/bundle/start/rainbow"]
 	path = .vim/pack/bundle/start/rainbow
 	url = https://github.com/luochen1990/rainbow
+[submodule ".vim/pack/bundle/start/vim-snippets"]
+	path = .vim/pack/bundle/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
