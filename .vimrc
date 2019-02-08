@@ -153,15 +153,16 @@ noremap <Leader>w :update<CR>
 nmap <leader>n :enew<CR>
 nmap <leader>q :bd<CR>
 nmap <Leader>. <Esc>:bnext<CR>
-nmap <Leader>, <Esc>:b#<CR>
-nmap <Leader>m <Esc>:bprevious<CR>
+nnoremap <leader><Tab> <Esc>:b#<CR>
+nmap <Leader>, <Esc>:bprevious<CR>
 
-nnoremap <Leader>s <kDivide><C-r><C-w>
+nnoremap <Leader>s <kDivide><C-r><C-w><CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 set hlsearch
 noremap <leader>h :let @/ = ""<CR>
 "noremap <leader>h :set hlsearch! hlsearch?<CR>
+
 
 " git
 noremap <leader>gs :G<CR>
