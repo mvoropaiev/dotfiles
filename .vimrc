@@ -156,12 +156,16 @@ nmap <Leader>. <Esc>:bnext<CR>
 nmap <Leader>, <Esc>:b#<CR>
 nmap <Leader>m <Esc>:bprevious<CR>
 
+nnoremap <Leader>s <kDivide><C-r><C-w>
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 set hlsearch
 noremap <leader>h :let @/ = ""<CR>
 "noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " git
 noremap <leader>gs :G<CR>
+noremap <leader>gw :Gw<CR>
 noremap <leader>gc :Git checkout<space>
 noremap <leader>gm :Gmerge --no-ff<space>
 noremap <leader>gd :Git d<space>
@@ -172,7 +176,7 @@ nnoremap « :NERDTreeFind<CR>
 let g:ctrlp_map = '<F12>'
 nmap <C-p> :FZF<CR>
 nnoremap <C-\> :NERDTreeToggle<CR>
-nnoremap <C-b> :Buffers<CR>
+nnoremap <C-b> :Buffers [<CR>
 nnoremap <F3> :Rg<Space>
 nnoremap <F2> :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <F2> :ALEGoToDefinition<CR>
