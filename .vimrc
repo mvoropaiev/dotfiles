@@ -4,6 +4,7 @@ syntax on
 set re=1
 set mouse=a
 set hidden
+set incsearch
 
 let g:neosnippet#snippets_directory='~/.vim/pack/bundle/start/vim-snippets/snippets'
 set directory^=$HOME/.vim/tmp//
@@ -143,13 +144,25 @@ endif
 "let g:netrw_nobeval = 1
 
 " ruby
-let g:ale_fixers = {'ruby': ['rubocop'], 'sh': ['shfmt'], 'terraform': ['terraform'], 'python': ['isort', 'yapf']}
+let g:ale_fixers = {
+  \ 'json': ['prettier'],
+  \ 'objc': ['uncrustify'],
+  \ 'objcpp': ['uncrustify'],
+  \ 'python': ['isort', 'yapf'],
+  \ 'ruby': ['rubocop'], 
+  \ 'sh': ['shfmt'],
+  \ 'terraform': ['terraform']
+  \ }
 
 " key bindings
 let mapleader = ","
-
+"command! -nargs=+ -complete=file A call fzf#vim#rg_raw(<q-args>)
+command! -bang -nargs=+ -complete=file Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.(<q-args>), 1)
 noremap <Leader>w :update<CR>
 
+nnoremap <Leader>; : 
 nmap <leader>n :enew<CR>
 nmap <leader>q :bd<CR>
 nmap <Leader>. <Esc>:bnext<CR>
@@ -176,6 +189,7 @@ nnoremap « :NERDTreeFind<CR>
 
 let g:ctrlp_map = '<F12>'
 nmap <C-p> :FZF<CR>
+nmap <C-f> :Rg<space>
 nnoremap <C-\> :NERDTreeToggle<CR>
 nnoremap <C-b> :Buffers [<CR>
 nnoremap <F3> :Rg<Space>

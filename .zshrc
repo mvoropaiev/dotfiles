@@ -129,6 +129,7 @@ export PATH="/usr/local/opt/ansible@1.9/bin:$PATH"
 # powerline
 # pip3 install powerline-status
 # pip3 show powerline-status
+powerline-daemon -q
 . /Users/mvoropaiev/Library/Python/3.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

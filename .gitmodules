@@ -74,3 +74,6 @@
 [submodule ".vim/pack/bundle/start/vim-snippets"]
 	path = .vim/pack/bundle/start/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule ".vim/pack/bundle/start/csv.vim"]
+	path = .vim/pack/bundle/start/csv.vim
+	url = https://github.com/chrisbra/csv.vim.git
