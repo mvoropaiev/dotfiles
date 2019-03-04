@@ -151,7 +151,8 @@ let g:ale_fixers = {
   \ 'python': ['isort', 'yapf'],
   \ 'ruby': ['rubocop'], 
   \ 'sh': ['shfmt'],
-  \ 'terraform': ['terraform']
+  \ 'terraform': ['terraform'],
+  \ 'scss': ['prettier'],
   \ }
 
 " key bindings
@@ -174,6 +175,7 @@ nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 set hlsearch
 noremap <leader>h :let @/ = ""<CR>
+map <leader>s :setlocal spell! spelllang=en_us<CR>
 "noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 
@@ -182,10 +184,11 @@ noremap <leader>gs :G<CR>
 noremap <leader>gw :Gw<CR>
 noremap <leader>gc :Git checkout<space>
 noremap <leader>gm :Gmerge --no-ff<space>
-noremap <leader>gd :Git d<space>
+noremap <leader>gd :Git db<space>
 noremap <leader>gC :Gcommit<CR>
 noremap <expr> <leader>gp ":Gpush -u origin " . fugitive#head()
 nnoremap « :NERDTreeFind<CR>
+nnoremap <leader>o :call append(line("."), "")<CR>
 
 let g:ctrlp_map = '<F12>'
 nmap <C-p> :FZF<CR>
@@ -196,6 +199,7 @@ nnoremap <F3> :Rg<Space>
 nnoremap <F2> :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <F2> :ALEGoToDefinition<CR>
 nnoremap <leader>f :ALEFix<CR>
+nnoremap <leader>d :ALEDetail<CR>
 " autocmd FileType eruby nnoremap <leader>f :!htmlbeautifier "%" "%"<CR>
 nnoremap <F7> :!screen -S d4m -p 0 -X stuff "touch \"/var/lib/docker/volumes/ftrails_app_nfs/_data/@%\""<CR><CR>
 
@@ -205,7 +209,8 @@ packloadall
 silent! helptags ALL
 
 let g:fzf_nvim_statusline = 1
-" Save current view settings on a per-window, per-buffer basis.
+
+" save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
     if !exists("w:SavedBufView")
         let w:SavedBufView = {}
@@ -213,7 +218,7 @@ function! AutoSaveWinView()
     let w:SavedBufView[bufnr("%")] = winsaveview()
 endfunction
 
-" Restore current view settings.
+" restore current view settings.
 function! AutoRestoreWinView()
     let buf = bufnr("%")
     if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
@@ -226,7 +231,7 @@ function! AutoRestoreWinView()
     endif
 endfunction
 
-" When switching buffers, preserve window view.
+" when switching buffers, preserve window view.
 if v:version >= 700
     autocmd BufLeave * call AutoSaveWinView()
     autocmd BufEnter * call AutoRestoreWinView()

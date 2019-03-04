@@ -77,3 +77,6 @@
 [submodule ".vim/pack/bundle/start/csv.vim"]
 	path = .vim/pack/bundle/start/csv.vim
 	url = https://github.com/chrisbra/csv.vim.git
+[submodule ".vim/pack/bundle/start/vim-dispatch"]
+	path = .vim/pack/bundle/start/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch

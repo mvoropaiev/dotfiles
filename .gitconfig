@@ -1,0 +1,22 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = tig
+[user]
+	name = Michael Voropaiev
+	email = m.voropaiev@gmail.com
+	signingkey = 09D73778
+[alias]
+	s = status --short
+	db = !sh -c 'git branch -D $1 && git push origin :$1 || git push origin :$1' -
+  m = !sh -c 'git merge --no-ff $1' -
+  d = difftool
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = true
+[difftool "icdiff"]
+	cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+[color]
+	pager = false
+[commit]
+	gpgsign = true
