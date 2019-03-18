@@ -1,6 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
-	pager = tig
+	; pager = tig
 [user]
 	name = Michael Voropaiev
 	email = m.voropaiev@gmail.com
@@ -15,6 +15,6 @@
 [difftool]
 	prompt = true
 [color]
-	pager = false
+	pager = true
 [commit]
 	gpgsign = true
