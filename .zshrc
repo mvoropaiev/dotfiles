@@ -33,7 +33,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -125,6 +125,11 @@ export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export PATH="/Users/mvoropaiev/Library/Python/3.7/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH="/usr/local/opt/ansible@1.9/bin:$PATH"
+
+# precmd
+precmd() {
+  echo -ne "\e]1;${PWD##*/}\a"
+}
 
 # powerline
 # pip3 install powerline-status
