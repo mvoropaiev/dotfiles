@@ -80,3 +80,6 @@
 [submodule ".vim/pack/bundle/start/vim-dispatch"]
 	path = .vim/pack/bundle/start/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
+[submodule ".vim/pack/bundle/start/vim-slim"]
+	path = .vim/pack/bundle/start/vim-slim
+	url = https://github.com/slim-template/vim-slim.git

@@ -6,7 +6,7 @@ set mouse=a
 set hidden
 set incsearch
 
-set undodir=~/.vim/undo-dir
+set undodir=~/.vim/undodir
 set undofile
 
 let g:neosnippet#snippets_directory='~/.vim/pack/bundle/start/vim-snippets/snippets'
