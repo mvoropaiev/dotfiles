@@ -83,3 +83,12 @@
 [submodule ".vim/pack/bundle/start/vim-slim"]
 	path = .vim/pack/bundle/start/vim-slim
 	url = https://github.com/slim-template/vim-slim.git
+[submodule ".vim/pack/bundle/start/vim-haml"]
+	path = .vim/pack/bundle/start/vim-haml
+	url = https://github.com/tpope/vim-haml.git
+[submodule ".vim/pack/bundle/start/vim-nginx"]
+	path = .vim/pack/bundle/start/vim-nginx
+	url = https://github.com/mvoropaiev/vim-nginx.git
+[submodule ".vim/pack/bundle/start/vim-css-color"]
+	path = .vim/pack/bundle/start/vim-css-color
+	url = https://github.com/ap/vim-css-color
