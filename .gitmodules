@@ -92,3 +92,15 @@
 [submodule ".vim/pack/bundle/start/vim-css-color"]
 	path = .vim/pack/bundle/start/vim-css-color
 	url = https://github.com/ap/vim-css-color
+[submodule ".vim/pack/bundle/start/dash.vim"]
+	path = .vim/pack/bundle/start/dash.vim
+	url = https://github.com/rizzatti/dash.vim.git
+[submodule ".vim/pack/bundle/start/vimagit"]
+	path = .vim/pack/bundle/start/vimagit
+	url = https://github.com/jreybert/vimagit.git
+[submodule ".vim/pack/bundle/start/vim-surround"]
+	path = .vim/pack/bundle/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".vim/pack/bundle/start/limelight.vim"]
+	path = .vim/pack/bundle/start/limelight.vim
+	url = https://github.com/junegunn/limelight.vim

@@ -4,6 +4,6 @@ bind generic <C-k> move-up
 bind generic <C-j> move-down
 bind generic <C-q> quit
 
-bind status P ?git push -u origin %(repo:head)
-bind status C !git commit --message "%(prompt git commit --message )"
+bind status <C-p> ?git push -u origin %(repo:head)
+bind status <C-c> !git commit --message "%(prompt git commit --message )"
 bind status c +sh -c 'echo %(file) | pbcopy && echo "Copied: %(file)"'

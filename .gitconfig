@@ -1,13 +1,16 @@
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = vim
 	; pager = tig
 [user]
 	name = Michael Voropaiev
 	email = m.voropaiev@gmail.com
 	signingkey = 09D73778
 [alias]
-	s = status --short
-	db = "!sh -c \"git branch -D $1; git push origin :$1\"" -
+  uncommit = reset HEAD^
+  s = status --short
+  db = !sh -c 'git branch -D $1 && git push origin :$1 || git push origin :$1' -
+	; db = "!sh -c \"git branch -D $1; git push origin :$1\"" -
   m = !sh -c 'git merge --no-ff $1' -
   d = difftool
 [diff]
