@@ -14,12 +14,6 @@
 [submodule ".vim/pack/bundle/start/gruvbox"]
 	path = .vim/pack/bundle/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
-[submodule ".vim/pack/bundle/start/neosnippet-snippets"]
-	path = .vim/pack/bundle/start/neosnippet-snippets
-	url = https://github.com/Shougo/neosnippet-snippets.git
-[submodule ".vim/pack/bundle/start/neosnippet.vim"]
-	path = .vim/pack/bundle/start/neosnippet.vim
-	url = https://github.com/Shougo/neosnippet.vim.git
 [submodule ".vim/pack/bundle/start/nerdtree"]
 	path = .vim/pack/bundle/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
