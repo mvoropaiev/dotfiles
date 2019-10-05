@@ -8,15 +8,9 @@
 [submodule ".vim/pack/bundle/start/Zenburn"]
 	path = .vim/pack/bundle/start/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git
-[submodule ".vim/pack/bundle/start/ale"]
-	path = .vim/pack/bundle/start/ale
-	url = https://github.com/w0rp/ale.git
 [submodule ".vim/pack/bundle/start/ctrlp.vim"]
 	path = .vim/pack/bundle/start/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".vim/pack/bundle/start/deoplete.nvim"]
-	path = .vim/pack/bundle/start/deoplete.nvim
-	url = https://github.com/Shougo/deoplete.nvim.git
 [submodule ".vim/pack/bundle/start/gruvbox"]
 	path = .vim/pack/bundle/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
@@ -104,3 +98,6 @@
 [submodule ".vim/pack/bundle/start/limelight.vim"]
 	path = .vim/pack/bundle/start/limelight.vim
 	url = https://github.com/junegunn/limelight.vim
+[submodule ".vim/pack/bundle/start/coc.nvim"]
+	path = .vim/pack/bundle/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
