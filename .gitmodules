@@ -92,6 +92,3 @@
 [submodule ".vim/pack/bundle/start/limelight.vim"]
 	path = .vim/pack/bundle/start/limelight.vim
 	url = https://github.com/junegunn/limelight.vim
-[submodule ".vim/pack/bundle/start/coc.nvim"]
-	path = .vim/pack/bundle/start/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
