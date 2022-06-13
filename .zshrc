@@ -3,7 +3,6 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mvoropaiev/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -109,7 +108,8 @@ export LC_ALL=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # aliases
-alias dc="WORKER_UID=$(id -u) WORKER_GID=$(id -g) docker-compose --file docker-compose.macos.yml"
+# alias dc="WORKER_UID=$(id -u) WORKER_GID=$(id -g) docker-compose --file docker-compose.macos.yml"
+alias dc="docker-compose"
 compdef dc='docker-compose'
 alias ll='ls -lG'
 alias macvim='/Applications/MacVim.app/Contents/MacOS/Vim'
@@ -120,9 +120,9 @@ if [ -f ~/.zsh_aliases.zsh ]; then
 fi
 
 # path
-export PATH="/usr/local/opt/ruby/bin::$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-export PATH="/Users/mvoropaiev/Library/Python/3.7/bin:$PATH"
+# export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH" # gem environment gemdir
+# export PATH="/usr/local/opt/ruby/bin:$PATH" # brew --prefix ruby
+export PATH="/Users/mvoropaiev/Library/Python/3.8/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH="/usr/local/opt/ansible@1.9/bin:$PATH"
 
@@ -135,7 +135,7 @@ precmd() {
 # pip3 install powerline-status
 # pip3 show powerline-status
 powerline-daemon -q
-. /Users/mvoropaiev/Library/Python/3.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
+. /Users/mvoropaiev/Library/Python/3.8/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
@@ -168,3 +168,9 @@ _setup_fzf() {
 }
 
 _setup_fzf
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.fastlane/bin:$PATH"
+
+eval "$(direnv hook zsh)"
+export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"

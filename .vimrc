@@ -7,10 +7,11 @@ set hidden
 set incsearch
 set noshowmode
 set synmaxcol=256
-
+set shortmess-=S
 set undodir=~/.vim/undodir
 set undofile
-
+set splitbelow
+set splitright
 set autoindent
 set smarttab
 set complete-=i
@@ -53,9 +54,24 @@ set sessionoptions-=options
 let g:neosnippet#snippets_directory='~/.vim/pack/bundle/start/vim-snippets/snippets'
 set directory^=$HOME/.vim/tmp//
 
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+"
+" coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+imap <C-k> <Plug>(coc-snippets-expand)
+vmap <C-k> <Plug>(coc-snippets-select)
+imap <C-k> <Plug>(coc-snippets-expand-jump)
+nmap <leader>rn <Plug>(coc-rename)
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
@@ -69,13 +85,13 @@ autocmd BufRead,BufNewFile *.conf setfiletype nginx
 let g:rainbow_active = 1
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
-set runtimepath+=~/.vim/pack/bundle/start/deoplete.nvim/
-call deoplete#custom#option({
-      \ 'auto_complete_delay': 200,
-      \ 'smart_case': v:true,
-      \ 'max_list': 50,
-      \ })
+" let g:deoplete#enable_at_startup = 1
+" set runtimepath+=~/.vim/pack/bundle/start/deoplete.nvim/
+" call deoplete#custom#option({
+"       \ 'auto_complete_delay': 200,
+"       \ 'smart_case': v:true,
+"       \ 'max_list': 50,
+"       \ })
 
 set completeopt=menuone,noselect,noinsert
 " set completeopt=longest,menuone
@@ -109,6 +125,7 @@ highlight SignColumn guibg=bg
 
 " airline
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#coc#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='tomorrow'
 let g:airline#extensions#default#section_truncate_width = {}
@@ -125,21 +142,36 @@ let g:airline#extensions#default#section_truncate_width = {}
 
 " ale
 let g:ale_linters = {
-\   'ruby': ['rubocop', 'reek'],
+\   'ruby': ['rubocop'],
 \   'python': ['pyls'],
 \}
-let g:ale_ruby_rubocop_executable='bin/rubocop'
-let g:ale_completion_enabled = 0
-let g:ale_ruby_solargraph_executable='bin/solargraph'
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:LanguageClient_serverCommands = {
-        \ 'python': ['pyls'],
-        \ 'ruby': ['bundle', 'exec', 'solargraph', 'stdio'],
-        \ }
+let g:ale_ruby_rubocop_executable='/usr/local/lib/ruby/gems/2.7.0/bin/rubocop'
+" let g:ale_completion_enabled = 0
+let g:ale_c_uncrustify_options = '-c ~/.uncrustify'
+" let g:ale_ruby_solargraph_executable='/usr/local/lib/ruby/gems/2.7.0/bin/solargraph'
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_lint_on_insert_leave = 1
+" let g:LanguageClient_serverCommands = {
+"         \ 'python': ['pyls'],
+"         \ 'ruby': ['bundle', 'exec', 'solargraph', 'stdio'],
+"         \ }
 
-let g:ale_sign_error = '>'
-let g:ale_sign_warning = '-'
+" let g:ale_sign_error = '>'
+" let g:ale_sign_warning = '-'
+let g:ale_fixers = {
+  \ 'json': ['prettier'],
+  \ 'objc': ['uncrustify'],
+  \ 'objcpp': ['uncrustify'],
+  \ 'python': ['isort', 'yapf'],
+  \ 'ruby': ['rubocop'],
+  \ 'sh': ['shfmt'],
+  \ 'terraform': ['terraform'],
+  \ 'scss': ['prettier'],
+  \ 'javascript': ['prettier'],
+  \ 'eruby': ['prettier'],
+  \ 'yaml': ['prettier'],
+  \ }
+
 " history
 " set undofile
 " iset undodir=~/.vim/undo/
@@ -154,10 +186,20 @@ set signcolumn=yes
 " color schema
 colors gruvbox 
 
-" nerdtree
+# cd to specified directory if provided
+augroup cdpwd
+    if argc() > 1 && isdirectory(argv()[0])
+      autocmd!
+      autocmd VimEnter * exe 'cd' argv()[0]
+    endif
+augroup END
+
+" NERDTree
 let g:NERDTreeWinPos = "right"
 let NERDTreeQuitOnOpen=1
+" let g:NERDTreeChDirMode = 1
 
+" autocmd BufEnter * lcd %:p:h
 " powerline
 "python3 from powerline.vim import setup as powerline_setup
 "python3 powerline_setup()
@@ -202,26 +244,14 @@ endif
 "let g:netrw_nobeval = 1
 
 " ruby
-let g:ale_fixers = {
-  \ 'json': ['prettier'],
-  \ 'objc': ['uncrustify'],
-  \ 'objcpp': ['uncrustify'],
-  \ 'python': ['isort', 'yapf'],
-  \ 'ruby': ['rubocop'], 
-  \ 'sh': ['shfmt'],
-  \ 'terraform': ['terraform'],
-  \ 'scss': ['prettier'],
-  \ 'javascript': ['prettier'],
-  \ 'eruby': ['prettier'],
-  \ }
 
 " key bindings
 let mapleader = ","
 "command! -nargs=+ -complete=file A call fzf#vim#rg_raw(<q-args>)
-command! -nargs=* -complete=file Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '. <q-args>, 1,
-      \   fzf#vim#with_preview('right:50%:hidden', '?'))
+" command! -nargs=* -complete=file Rg
+"       \ call fzf#vim#grep(
+"       \   'rg --column --line-number --no-heading --color=always --smart-case '. <q-args>, 1,
+"       \   fzf#vim#with_preview('right:50%:hidden', '?'))
 " command! -bang -nargs=* Rg
 "   \ call fzf#vim#grep(
 "   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
@@ -239,9 +269,11 @@ command! -nargs=1 Silent
 \ | execute ':redraw!'
 nnoremap <Leader>; : 
 nmap <leader>n :enew<CR>
+nmap <leader>e :e<CR>
 nmap <leader>q :bd<CR>
 nmap <leader>Q :q<CR>
 nmap <Leader>. <Esc>:bnext<CR>
+map ,* *<C-O>:%s///gn<CR>
 nnoremap <leader><Tab> <Esc>:b#<CR>
 nmap <Leader>, <Esc>:bprevious<CR>
 
@@ -253,7 +285,7 @@ noremap <leader>h :let @/ = ""<CR>
 map <leader>s :setlocal spell! spelllang=en_us<CR>
 "noremap <leader>h :set hlsearch! hlsearch?<CR>
 
-noremap <leader>t :terminal<CR>
+noremap <leader>t :20sp ../todo.txt<CR>
 " git
 " noremap <leader>gs :G<CR>
 noremap <leader>gs :Silent tig status<cr>
@@ -308,6 +340,10 @@ function! AutoRestoreWinView()
         unlet w:SavedBufView[buf]
     endif
 endfunction
+let g:vim_markdown_folding_disabled = 1
+
+let g:fzf_preview_window = ['up:40%', 'ctrl-/']
+let g:fzf_layout = { 'down': '~40%' }
 
 " when switching buffers, preserve window view.
 if v:version >= 700

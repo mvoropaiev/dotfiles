@@ -1,10 +1,6 @@
 [submodule ".vim/pack/bundle/start/Jenkinsfile-vim-syntax"]
 	path = .vim/pack/bundle/start/Jenkinsfile-vim-syntax
 	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git
-[submodule ".vim/pack/bundle/start/LanguageClient-neovim"]
-	path = .vim/pack/bundle/start/LanguageClient-neovim
-	url = https://github.com/autozimu/LanguageClient-neovim.git
-	branch = next
 [submodule ".vim/pack/bundle/start/Zenburn"]
 	path = .vim/pack/bundle/start/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git
@@ -92,3 +88,7 @@
 [submodule ".vim/pack/bundle/start/limelight.vim"]
 	path = .vim/pack/bundle/start/limelight.vim
 	url = https://github.com/junegunn/limelight.vim
+[submodule ".vim/pack/bundle/start/coc.nvim"]
+	path = .vim/pack/bundle/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release
