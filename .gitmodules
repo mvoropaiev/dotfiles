@@ -82,9 +82,6 @@
 [submodule ".vim/pack/bundle/start/vimagit"]
 	path = .vim/pack/bundle/start/vimagit
 	url = https://github.com/jreybert/vimagit.git
-[submodule ".vim/pack/bundle/start/vim-surround"]
-	path = .vim/pack/bundle/start/vim-surround
-	url = https://github.com/tpope/vim-surround
 [submodule ".vim/pack/bundle/start/limelight.vim"]
 	path = .vim/pack/bundle/start/limelight.vim
 	url = https://github.com/junegunn/limelight.vim
@@ -92,3 +89,17 @@
 	path = .vim/pack/bundle/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
+[submodule ".vim/pack/bundle/start/python-syntax.git"]
+	path = .vim/pack/bundle/start/python-syntax.git
+	url = https://github.com/vim-python/python-syntax.git
+	branch = master
+[submodule ".vim/pack/bundle/start/vim-dadbod"]
+	path = .vim/pack/bundle/start/vim-dadbod
+	url = https://github.com/tpope/vim-dadbod.git
+	branch = master
+[submodule ".vim/pack/bundle/start/vim-surround"]
+	path = .vim/pack/bundle/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/pack/bundle/start/gruvbox-material"]
+	path = .vim/pack/bundle/start/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material.git
