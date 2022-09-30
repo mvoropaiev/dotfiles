@@ -1,10 +1,11 @@
-set nocompatible
-set clipboard=unnamed
 syntax on
+set encoding=utf-8
+set nocompatible
+" set clipboard=unnamed
 set re=1
 set mouse=a
+set ttymouse=xterm2
 set hidden
-set incsearch
 set noshowmode
 set synmaxcol=256
 set shortmess-=S
@@ -18,12 +19,15 @@ set complete-=i
 set nrformats-=octal
 set laststatus=2
 set wildmenu
+let g:python_highlight_all = 1
 if !&scrolloff
   set scrolloff=1
 endif
+
 if !&sidescrolloff
   set sidescrolloff=5
 endif
+
 set display+=lastline
 
 if &listchars ==# 'eol:$'
@@ -31,7 +35,7 @@ if &listchars ==# 'eol:$'
 endif
 
 if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j " Delete comment character when joining commented lines
+  set formatoptions+=j " delete comment character when joining commented lines
 endif
 
 if has('path_extra')
@@ -43,12 +47,15 @@ set autoread
 if &history < 1000
   set history=1000
 endif
+
 if &tabpagemax < 50
   set tabpagemax=50
 endif
+
 if !empty(&viminfo)
   set viminfo^=!
 endif
+
 set sessionoptions-=options
 
 let g:neosnippet#snippets_directory='~/.vim/pack/bundle/start/vim-snippets/snippets'
@@ -75,6 +82,7 @@ nnoremap <C-H> <C-W><C-H>
 " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+" ruby
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -103,7 +111,7 @@ let g:neosnippet#scope_aliases['ruby'] = 'ruby,rails'
 set colorcolumn=100
 " TODO: fix?
 set cursorline
-" set norelativenumber
+set norelativenumber
 " set foldlevel=0
 " set foldmethod=manual
 
@@ -178,28 +186,27 @@ let g:ale_fixers = {
 
 " fix backspace
 " set backspace=indent,eol,start
-set backspace=2
-set number
-set numberwidth=5
-set signcolumn=yes
+set backspace=2 " allow backspace over ident, eol, start
+set number " display line number
+set numberwidth=5 " line column minimum width
+set signcolumn=yes " display signs
 
-" color schema
-colors gruvbox 
+colors gruvbox " color scheme
 
-# cd to specified directory if provided
+" cd to specified directory if provided at startup
+" autocmd VimEnter * lcs %:p:h
 augroup cdpwd
-    if argc() > 1 && isdirectory(argv()[0])
+    if argc() >= 1 && isdirectory(argv()[0])
       autocmd!
       autocmd VimEnter * exe 'cd' argv()[0]
     endif
 augroup END
 
 " NERDTree
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos="right"
 let NERDTreeQuitOnOpen=1
-" let g:NERDTreeChDirMode = 1
 
-" autocmd BufEnter * lcd %:p:h
+" autocmd BufEnter * :NERDTreeFind<cr>
 " powerline
 "python3 from powerline.vim import setup as powerline_setup
 "python3 powerline_setup()
@@ -207,15 +214,19 @@ let NERDTreeQuitOnOpen=1
 "set laststatus=2
 "set t_Co=256
 
-" make Esc happen without waiting for timeoutlen
 " fixes Powerline delay
+
+" gui specific
 if ! has('gui_running')
-set ttimeoutlen=10
-augroup FastEscape
+  set ttimeoutlen=10
+  set guifont=Inconsolata\ for\ Powerline:h14
+  "set guifontwide=Hiragino\ Sans\ GB
+  "set linespace=2
+  augroup FastEscape " make esc happen without waiting for timeoutlen
     autocmd!
     au InsertEnter * set timeoutlen=0
     au InsertLeave * set timeoutlen=1000
-augroup END
+  augroup END
 endif
 
 " ctrl-p
@@ -232,18 +243,9 @@ if executable('rg')
   let g:ctrlp_use_caching = 0
 endif
 
-" font for gui
-if has("gui_running")
-  set guifont=Inconsolata\ for\ Powerline:h14
-  "set guifontwide=Hiragino\ Sans\ GB
-  "set linespace=2
-endif
-
 " speed
 "set noballooneval
 "let g:netrw_nobeval = 1
-
-" ruby
 
 " key bindings
 let mapleader = ","
@@ -280,13 +282,14 @@ nmap <Leader>, <Esc>:bprevious<CR>
 nnoremap <Leader>s <kDivide><C-r><C-w><CR>
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" search
 set hlsearch
+set incsearch
 noremap <leader>h :let @/ = ""<CR>
-map <leader>s :setlocal spell! spelllang=en_us<CR>
 "noremap <leader>h :set hlsearch! hlsearch?<CR>
+" map <leader>s :setlocal spell! spelllang=en_us<CR>
 
-noremap <leader>t :20sp ../todo.txt<CR>
-" git
+" mappings - git
 " noremap <leader>gs :G<CR>
 noremap <leader>gs :Silent tig status<cr>
 noremap <leader>gw :Gw<CR>
@@ -295,10 +298,10 @@ noremap <leader>gm :Gmerge --no-ff<space>
 noremap <leader>gd :Git db<space>
 noremap <leader>gC :Gcommit<CR>
 noremap <expr> <leader>gp ":Gpush -u origin " . fugitive#head()
-nnoremap « :NERDTreeFind<CR>
+nnoremap <leader>m :NERDTreeFind<CR>
 nnoremap <leader>o :call append(line("."), "")<CR>
 
-let g:ctrlp_map = '<F12>'
+let g:ctrlp_map = '<F10>'
 nmap <C-p> :FZF<CR>
 nmap <C-f> :Rg<space>
 nnoremap <C-w> :Buffers<CR>
@@ -310,15 +313,22 @@ nnoremap <F2> :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>f :ALEFix<CR>
 nnoremap <leader>d :ALEDetail<CR>
 " autocmd FileType eruby nnoremap <leader>f :!htmlbeautifier "%" "%"<CR>
-nnoremap <F7> :!screen -S d4m -p 0 -X stuff "touch \"/var/lib/docker/volumes/ftrails_app_nfs/_data/@%\""<CR><CR>
 nnoremap <F8> :!htmlbeautifier "%:p" "%:p"<CR>l<CR>
 
-vnoremap <F5> :sort<CR>
+" mapping copy/paster/sort
+vnoremap <leader>s :sort<CR>
+vnoremap <leader>y "*y
+vnoremap <leader>p "*p
+nnoremap <leader>p "*p
+
 " help
 packloadall
 silent! helptags ALL
 
+" fzf
 let g:fzf_nvim_statusline = 1
+let g:fzf_preview_window = ['up:40%', 'ctrl-/']
+let g:fzf_layout = { 'down': '~40%' }
 
 " save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
@@ -341,9 +351,6 @@ function! AutoRestoreWinView()
     endif
 endfunction
 let g:vim_markdown_folding_disabled = 1
-
-let g:fzf_preview_window = ['up:40%', 'ctrl-/']
-let g:fzf_layout = { 'down': '~40%' }
 
 " when switching buffers, preserve window view.
 if v:version >= 700
